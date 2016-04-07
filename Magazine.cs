@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Library1
 {
-    class Book : Literature
+    class Magazine : Literature
     {
-        
+       
     }
 }

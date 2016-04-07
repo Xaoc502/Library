@@ -39,11 +39,18 @@
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BookYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Frequency = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 62);
+            this.button1.Location = new System.Drawing.Point(12, 129);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 23);
             this.button1.TabIndex = 0;
@@ -95,43 +102,107 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(389, 20);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Book Year";
+            this.label3.Text = "Year";
             // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Type,
             this.Title,
             this.Author,
-            this.BookYear});
-            this.listView1.Location = new System.Drawing.Point(12, 124);
+            this.BookYear,
+            this.Frequency});
+            this.listView1.Location = new System.Drawing.Point(12, 176);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(451, 484);
+            this.listView1.Size = new System.Drawing.Size(716, 621);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // Title
             // 
+            this.Title.DisplayIndex = 0;
             this.Title.Text = "Title";
             this.Title.Width = 146;
             // 
             // Author
             // 
+            this.Author.DisplayIndex = 1;
             this.Author.Text = "Author";
             this.Author.Width = 118;
             // 
             // BookYear
             // 
-            this.BookYear.Text = "Book Year";
+            this.BookYear.DisplayIndex = 2;
+            this.BookYear.Text = "Year";
             this.BookYear.Width = 119;
+            // 
+            // Frequency
+            // 
+            this.Frequency.DisplayIndex = 3;
+            this.Frequency.Text = "Frequency";
+            this.Frequency.Width = 67;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(487, 36);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(114, 20);
+            this.textBox4.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(515, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(515, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Frequency";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Book",
+            "Magazine"});
+            this.listBox1.Location = new System.Drawing.Point(12, 93);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(152, 30);
+            this.listBox1.TabIndex = 12;
+            // 
+            // Type
+            // 
+            this.Type.Text = "Type";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Select the type of Literature";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 620);
+            this.ClientSize = new System.Drawing.Size(740, 809);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -142,6 +213,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +232,16 @@
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Author;
         private System.Windows.Forms.ColumnHeader BookYear;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ColumnHeader Frequency;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem bookToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem magazineToolStripMenuItem;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ColumnHeader Type;
+        private System.Windows.Forms.Label label6;
     }
 }
 

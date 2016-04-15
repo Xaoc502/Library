@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Library1
 {
@@ -10,33 +13,76 @@ namespace Library1
         internal static List<Literature> Load()
         {
             List<Literature> list = new List<Literature>();
+            
+            XmlTextReader reader = new XmlTextReader("library.xml");
 
-            foreach (string line in File.ReadLines(@"D:\2.txt"))
+            while (reader.Read())
             {
-                string[] bookProperties = line.Split('\t');            
-                                
-                list.Add(new Literature(bookProperties[0], bookProperties[1], bookProperties[2], Convert.ToInt32(bookProperties[3]), bookProperties[4]));
-                                
+                if (reader.Name == "Book")
+                {
+                    list.Add(new Book(reader.GetAttribute("title"), reader.GetAttribute("author"), Convert.ToInt32(reader.GetAttribute("year")), reader.GetAttribute("frequency")));
+                }
+                else if(reader.Name == "Magazine")
+                {
+                    list.Add(new Magazine(reader.GetAttribute("title"), reader.GetAttribute("author"), Convert.ToInt32(reader.GetAttribute("year")), reader.GetAttribute("frequency")));
+                }
             }
-       
+            reader.Close();
             return list;
         }
 
-        internal static void Write(ListView listView1)
+        internal static void Save(List<Literature> list)
         {
-            using (StreamWriter sw = new StreamWriter("D:\\2.txt"))
+            XmlTextWriter writer = new XmlTextWriter("library.xml", Encoding.UTF8);
+            writer.WriteStartDocument();
+            writer.WriteStartElement("LiteratureList");
+
+            foreach (var item in list)
             {
-                foreach (ListViewItem item in listView1.Items)
-                {                    
-                    sw.Write(item.Text + "\t");
-                    sw.Write(item.SubItems[1].Text + "\t");
-                    sw.Write(item.SubItems[2].Text + "\t");
-                    sw.Write(item.SubItems[3].Text + "\t");
-                    sw.Write(item.SubItems[4].Text + "\t");
-                    sw.WriteLine();
-                    
+                
+                if (item.Frequency == "")
+                {
+                    writer.WriteStartElement("Book");
+
+                    writer.WriteAttributeString("title", item.Title);
+                    writer.WriteAttributeString("author", item.Author);
+                    writer.WriteAttributeString("year", Convert.ToString(item.Year));
+                    writer.WriteAttributeString("frequency", item.Frequency);
+
+                    writer.WriteEndElement();
                 }
+
+                else
+                {
+                    writer.WriteStartElement("Magazine");
+
+                    writer.WriteAttributeString("title", item.Title);
+                    writer.WriteAttributeString("author", item.Author);
+                    writer.WriteAttributeString("year", Convert.ToString(item.Year));
+                    writer.WriteAttributeString("frequency", item.Frequency);
+
+                    writer.WriteEndElement();
+                }
+               
             }
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
+        }
+
+        internal static List<Literature> Search(string text)
+        {
+            
+            List<Literature> searchList = new List<Literature>(); 
+            List<Literature> list = Load();
+            foreach (var item in list)
+            {
+                if (item.Title == text)
+                {
+                    searchList.Add(item);
+                }                
+            }
+            return searchList;
         }
     }
 }

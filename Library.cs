@@ -9,7 +9,7 @@ namespace Library1
 
         public Library()
         {
-            list = Dao.Load();
+          list = Dao.Load();
         }
         
     }

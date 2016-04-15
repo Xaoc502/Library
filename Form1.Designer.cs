@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BookYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,8 +45,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label6 = new System.Windows.Forms.Label();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -121,27 +124,27 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // Type
+            // 
+            this.Type.Text = "Type";
+            // 
             // Title
             // 
-            this.Title.DisplayIndex = 0;
             this.Title.Text = "Title";
             this.Title.Width = 146;
             // 
             // Author
             // 
-            this.Author.DisplayIndex = 1;
             this.Author.Text = "Author";
             this.Author.Width = 118;
             // 
             // BookYear
             // 
-            this.BookYear.DisplayIndex = 2;
             this.BookYear.Text = "Year";
             this.BookYear.Width = 119;
             // 
             // Frequency
             // 
-            this.Frequency.DisplayIndex = 3;
             this.Frequency.Text = "Frequency";
             this.Frequency.Width = 67;
             // 
@@ -180,10 +183,6 @@
             this.listBox1.Size = new System.Drawing.Size(152, 30);
             this.listBox1.TabIndex = 12;
             // 
-            // Type
-            // 
-            this.Type.Text = "Type";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -193,11 +192,40 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Select the type of Literature";
             // 
+            // searchBox
+            // 
+            this.searchBox.Location = new System.Drawing.Point(363, 102);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(238, 20);
+            this.searchBox.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(441, 86);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Search by title";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(440, 129);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "SEARCH";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 809);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
@@ -213,7 +241,6 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,6 +269,9 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ColumnHeader Type;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox searchBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
     }
 }
 

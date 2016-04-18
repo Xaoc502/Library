@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 namespace Library1
 {
     class Book : Literature
-    {
-        public Book(string title, string author, int year, string frequency) : base(title, author, year, frequency)
+    {       
+        public Book(string title, string author, int year)
         {
+            this.Title = title;
+            this.Author = author;
+            this.Year = year;           
         }
     }
 }

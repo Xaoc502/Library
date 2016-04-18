@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Library1
 {
-    class Magazine : Literature
-    {
-        
-        public Magazine(string title, string author, int year, string frequency)
+    internal class NewsPaper : Literature
+    {       
+        public NewsPaper(string title, string author, string frequency, string edition, double price)
         {
             this.Title = title;
             this.Author = author;
-            this.Year = year;
             this.Frequency = frequency;
+            this.Edition = edition;
+            this.Price = price;
         }
     }
 }

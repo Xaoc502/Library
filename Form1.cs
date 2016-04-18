@@ -27,19 +27,32 @@ namespace Library1
             {
                 ListViewItem newItem = new ListViewItem();                                                        
                 
-                if (literature.Frequency == "")
+                if (literature.GetType() == typeof(Book))
                 {
                     newItem = new ListViewItem("Book");
+                    newItem.SubItems.Add(literature.Title);
+                    newItem.SubItems.Add(literature.Author);
+                    newItem.SubItems.Add(Convert.ToString(literature.Year));
                 }
-                else
+                else if (literature.GetType() == typeof(Magazine))
                 {
                     newItem = new ListViewItem("Magazine");
+                    newItem.SubItems.Add(literature.Title);
+                    newItem.SubItems.Add(literature.Author);
+                    newItem.SubItems.Add(Convert.ToString(literature.Year));
+                    newItem.SubItems.Add(Convert.ToString(literature.Frequency));
                 }
-                
-                newItem.SubItems.Add(literature.Title);
-                newItem.SubItems.Add(literature.Author);
-                newItem.SubItems.Add(Convert.ToString(literature.Year));
-                newItem.SubItems.Add(Convert.ToString(literature.Frequency));
+                else if (literature.GetType() == typeof(NewsPaper))
+                {
+                    newItem = new ListViewItem("NewsPaper");
+                    newItem.SubItems.Add(literature.Title);
+                    newItem.SubItems.Add(literature.Author);
+                    newItem.SubItems.Add(Convert.ToString(literature.Year));
+                    newItem.SubItems.Add(Convert.ToString(literature.Frequency));
+                    newItem.SubItems.Add(Convert.ToString(literature.Edition));
+                    newItem.SubItems.Add(Convert.ToString(literature.Price));
+                }
+
                 listView1.Items.Add(newItem);
             }
         }
@@ -49,47 +62,59 @@ namespace Library1
             ListViewItem newItem = new ListViewItem(listBox1.SelectedItem.ToString());
             newItem.SubItems.Add(textBox1.Text);
             newItem.SubItems.Add(textBox2.Text);
-            newItem.SubItems.Add(textBox3.Text);
+            
             if (listBox1.SelectedItem.ToString() == "Book")
             {
-                newItem.SubItems.Add("");
+                newItem.SubItems.Add(textBox3.Text);
+              
             }
-            else
+            else if (listBox1.SelectedItem.ToString() == "Magazine")
             {
+                newItem.SubItems.Add(textBox3.Text);
                 newItem.SubItems.Add(textBox4.Text);
             }
-            
+
+            else if (listBox1.SelectedItem.ToString() == "NewsPaper")
+            {
+                newItem.SubItems.Add("");
+                newItem.SubItems.Add(textBox4.Text);
+                newItem.SubItems.Add(textBox5.Text);
+                newItem.SubItems.Add(textBox6.Text);
+            }
+
             listView1.Items.Add(newItem);
             if (listBox1.SelectedItem.ToString() == "Book")
             {
-                library.list.Add(new Book(textBox1.Text, textBox2.Text, Convert.ToInt32(textBox3.Text), ""));
+                library.list.Add(new Book(textBox1.Text, textBox2.Text, Convert.ToInt32(textBox3.Text)));
             }
             else if (listBox1.SelectedItem.ToString() == "Magazine")
             {
                 library.list.Add(new Magazine(textBox1.Text, textBox2.Text, Convert.ToInt32(textBox3.Text), textBox4.Text));
             }
+            else if (listBox1.SelectedItem.ToString() == "NewsPaper")
+            {
+                library.list.Add(new NewsPaper(textBox1.Text, textBox2.Text, textBox4.Text, textBox5.Text, Convert.ToDouble(textBox6.Text)));
+            }
+
             Dao.Save(library.list);
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-
-            //ListView.ListViewItemCollection toFindColection = listView1.Items;
-            //for (int i = 0; i < toFindColection.Count; i++)
-            //{
-            //    string allReadyText = toFindColection[i].SubItems[1].Text;
-            //    if (allReadyText == searchBox.Text)
-            //    {
-            //        listView1.Select();
-            //        toFindColection[i].Selected = true;
-            //        listView1.EnsureVisible(i);
-            //        break;
-            //    }
-            //}
-
+        {                      
             listView1.Items.Clear();
-            ShowList(Dao.Search(searchBox.Text));
+           
+            if (listBox1.SelectedIndex == -1)
+            {
+                ShowList(Dao.Search(searchBox.Text));
+
+            }
+            else
+            {
+                ShowList(Dao.Search(listBox1.SelectedItem.ToString(), searchBox.Text));
+            }            
 
         }
+
+        
     }
 }

@@ -20,11 +20,15 @@ namespace Library1
             {
                 if (reader.Name == "Book")
                 {
-                    list.Add(new Book(reader.GetAttribute("title"), reader.GetAttribute("author"), Convert.ToInt32(reader.GetAttribute("year")), reader.GetAttribute("frequency")));
+                    list.Add(new Book(reader.GetAttribute("title"), reader.GetAttribute("author"), Convert.ToInt32(reader.GetAttribute("year"))));
                 }
                 else if(reader.Name == "Magazine")
                 {
                     list.Add(new Magazine(reader.GetAttribute("title"), reader.GetAttribute("author"), Convert.ToInt32(reader.GetAttribute("year")), reader.GetAttribute("frequency")));
+                }
+                else if (reader.Name == "NewsPaper")
+                {
+                    list.Add(new NewsPaper(reader.GetAttribute("title"), reader.GetAttribute("author"), reader.GetAttribute("frequency"), reader.GetAttribute("edition"), Convert.ToDouble(reader.GetAttribute("price"))));
                 }
             }
             reader.Close();
@@ -40,19 +44,18 @@ namespace Library1
             foreach (var item in list)
             {
                 
-                if (item.Frequency == "")
+                if (item.GetType() == typeof(Book))
                 {
                     writer.WriteStartElement("Book");
 
                     writer.WriteAttributeString("title", item.Title);
                     writer.WriteAttributeString("author", item.Author);
-                    writer.WriteAttributeString("year", Convert.ToString(item.Year));
-                    writer.WriteAttributeString("frequency", item.Frequency);
+                    writer.WriteAttributeString("year", Convert.ToString(item.Year));                  
 
                     writer.WriteEndElement();
                 }
 
-                else
+                else if (item.GetType() == typeof(Magazine))
                 {
                     writer.WriteStartElement("Magazine");
 
@@ -63,7 +66,20 @@ namespace Library1
 
                     writer.WriteEndElement();
                 }
-               
+
+                else if (item.GetType() == typeof(NewsPaper))
+                {
+                    writer.WriteStartElement("NewsPaper");
+
+                    writer.WriteAttributeString("title", item.Title);
+                    writer.WriteAttributeString("author", item.Author);
+                    writer.WriteAttributeString("frequency", item.Frequency);
+                    writer.WriteAttributeString("edition", item.Edition);
+                    writer.WriteAttributeString("price", Convert.ToString(item.Price));
+
+                    writer.WriteEndElement();
+                }
+
             }
             writer.WriteEndElement();
             writer.WriteEndDocument();
@@ -74,7 +90,7 @@ namespace Library1
         {
             
             List<Literature> searchList = new List<Literature>(); 
-            List<Literature> list = Load();
+            List<Literature> list = Load();           
             foreach (var item in list)
             {
                 if (item.Title == text)
@@ -82,6 +98,32 @@ namespace Library1
                     searchList.Add(item);
                 }                
             }
+            return searchList;
+        }
+
+        internal static List<Literature> Search(string type, string text)
+        {
+
+            List<Literature> searchList = new List<Literature>();
+            List<Literature> list = Load();
+            if (type == "NewsPaper")
+            {
+                foreach (var item in list)
+                {
+                    if (item.GetType() == typeof(NewsPaper))
+                    {
+                        if (item.Title == text)
+                        {
+                            searchList.Add(item);
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            
             return searchList;
         }
     }

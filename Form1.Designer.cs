@@ -41,6 +41,8 @@
             this.Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BookYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Frequency = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Edition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,11 +51,15 @@
             this.searchBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 129);
+            this.button1.Location = new System.Drawing.Point(12, 147);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 23);
             this.button1.TabIndex = 0;
@@ -116,10 +122,12 @@
             this.Title,
             this.Author,
             this.BookYear,
-            this.Frequency});
+            this.Frequency,
+            this.Edition,
+            this.Price});
             this.listView1.Location = new System.Drawing.Point(12, 176);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(716, 621);
+            this.listView1.Size = new System.Drawing.Size(886, 621);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -146,7 +154,17 @@
             // Frequency
             // 
             this.Frequency.Text = "Frequency";
-            this.Frequency.Width = 67;
+            this.Frequency.Width = 103;
+            // 
+            // Edition
+            // 
+            this.Edition.Text = "Edition";
+            this.Edition.Width = 94;
+            // 
+            // Price
+            // 
+            this.Price.Text = "Price";
+            this.Price.Width = 88;
             // 
             // textBox4
             // 
@@ -177,10 +195,11 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
             "Book",
-            "Magazine"});
+            "Magazine",
+            "NewsPaper"});
             this.listBox1.Location = new System.Drawing.Point(12, 93);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(152, 30);
+            this.listBox1.Size = new System.Drawing.Size(152, 43);
             this.listBox1.TabIndex = 12;
             // 
             // label6
@@ -218,11 +237,47 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(621, 36);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 17;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(736, 36);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 20);
+            this.textBox6.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(654, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Edition";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(771, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(31, 13);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Price";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 809);
+            this.ClientSize = new System.Drawing.Size(910, 809);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.searchBox);
@@ -272,6 +327,12 @@
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ColumnHeader Edition;
+        private System.Windows.Forms.ColumnHeader Price;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
 

@@ -8,7 +8,10 @@ namespace Library1
 {
     class Magazine : Literature
     {
-        
+        public Magazine()
+        {
+        }
+
         public Magazine(string title, string author, int year, string frequency)
         {
             this.Title = title;

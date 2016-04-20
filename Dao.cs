@@ -86,45 +86,39 @@ namespace Library1
             writer.Close();
         }
 
-        internal static List<Literature> Search(string text)
-        {
-            
-            List<Literature> searchList = new List<Literature>(); 
-            List<Literature> list = Load();           
-            foreach (var item in list)
-            {
-                if (item.Title == text)
-                {
-                    searchList.Add(item);
-                }                
-            }
-            return searchList;
-        }
+        //internal static List<Literature> Search(string text)
+        //{
 
-        internal static List<Literature> Search(string type, string text)
-        {
+        //    List<Literature> searchList = new List<Literature>();
+        //    List<Literature> list = Load();
+        //    foreach (var item in list)
+        //    {
+        //        if (item.Title == text)
+        //        {
+        //            searchList.Add(item);
+        //        }
+        //    }
+        //    return searchList;
+        //}
 
-            List<Literature> searchList = new List<Literature>();
-            List<Literature> list = Load();
-            if (type == "NewsPaper")
-            {
-                foreach (var item in list)
-                {
-                    if (item.GetType() == typeof(NewsPaper))
-                    {
-                        if (item.Title == text)
-                        {
-                            searchList.Add(item);
-                        }
-                    }
-                    else
-                    {
+        //internal static List<Literature> Search(ListBox listBox, ListView listView, string text)
+        //{
 
-                    }
-                }
-            }
-            
-            return searchList;
-        }
+        //    List<Literature> searchList = new List<Literature>();
+        //    List<Literature> list = Load();
+
+        //    if (listBox.SelectedIndex == -1)
+        //    {
+        //        Search(text);
+        //    }
+
+        //    else
+        //    {
+        //        listView.
+        //    }
+
+
+        //    return searchList;
+        //}
     }
 }

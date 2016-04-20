@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace Library1
 {
     internal class NewsPaper : Literature
-    {       
+    {
+        public NewsPaper()
+        {
+        }
+
         public NewsPaper(string title, string author, string frequency, string edition, double price)
         {
             this.Title = title;

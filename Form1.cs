@@ -40,7 +40,7 @@ namespace Library1
                     newItem.SubItems.Add(literature.Title);
                     newItem.SubItems.Add(literature.Author);
                     newItem.SubItems.Add(Convert.ToString(literature.Year));
-                    newItem.SubItems.Add(Convert.ToString(literature.Frequency));
+                    newItem.SubItems.Add(literature.Frequency);
                 }
                 else if (literature.GetType() == typeof(NewsPaper))
                 {
@@ -48,8 +48,8 @@ namespace Library1
                     newItem.SubItems.Add(literature.Title);
                     newItem.SubItems.Add(literature.Author);
                     newItem.SubItems.Add(Convert.ToString(literature.Year));
-                    newItem.SubItems.Add(Convert.ToString(literature.Frequency));
-                    newItem.SubItems.Add(Convert.ToString(literature.Edition));
+                    newItem.SubItems.Add(literature.Frequency);
+                    newItem.SubItems.Add(literature.Edition);
                     newItem.SubItems.Add(Convert.ToString(literature.Price));
                 }
 
@@ -100,21 +100,44 @@ namespace Library1
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {                      
+        {
             listView1.Items.Clear();
-           
-            if (listBox1.SelectedIndex == -1)
+            ShowList(library.list);
+            foreach (ListViewItem item in listView1.Items)
             {
-                ShowList(Dao.Search(searchBox.Text));
+               
+                if (listBox1.SelectedIndex == -1)
+                {
+                    if (item.SubItems[1].Text != searchBox.Text)
+                    {
+                        item.Remove();
+                    }                    
+                }
 
+                else
+                {
+                    if (item.SubItems[1].Text != searchBox.Text || item.Text != listBox1.Text)
+                    {
+                        item.Remove();
+                    }                    
+                   
+                }           
+                              
             }
-            else
-            {
-                ShowList(Dao.Search(listBox1.SelectedItem.ToString(), searchBox.Text));
-            }            
 
         }
 
-        
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+            ShowList(library.list);
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.Text != listBox1.Text)
+                {
+                    item.Remove();
+                }
+            }
+        }
     }
 }
